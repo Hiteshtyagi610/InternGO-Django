@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %}Internships | InternGo{% endblock %}
+{% block content %}
+
+<section class="py-10">
+    <h2 class="text-3xl font-bold mb-6 text-center">Explore Internships</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+        {% for internship in internships %}
+        <div class="bg-white shadow-md rounded-xl p-6 hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold text-blue-600 mb-2">{{ internship.title }}</h3>
+            <p class="text-gray-600 mb-2">{{ internship.company_name }}</p>
+            <p class="text-gray-500 mb-4">{{ internship.location }}</p>
+            <a href="{% url 'internship_detail' internship.id %}" class="text-blue-600 hover:underline">View Details →</a>
+        </div>
+        {% empty %}
+        <p class="text-gray-600 text-center col-span-3">No internships available right now.</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

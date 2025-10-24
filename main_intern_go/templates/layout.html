@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}InternGo{% endblock %}</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <!-- 🌐 Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="{% url 'home' %}" class="text-2xl font-bold text-blue-600">Intern<span class="text-gray-800">Go</span></a>
+
+            <ul class="hidden md:flex space-x-6 text-lg">
+                <li><a href="{% url 'home' %}" class="hover:text-blue-600">Home</a></li>
+                <li><a href="{% url 'internship_list' %}" class="hover:text-blue-600">Explore Internships</a></li>
+                <li><a href="{% url 'about' %}" class="hover:text-blue-600">About</a></li>
+                <li><a href="{% url 'contact' %}" class="hover:text-blue-600">Contact</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboard' %}" class="hover:text-blue-600">Dashboard</a></li>
+                    <li><a href="{% url 'logout' %}" class="hover:text-red-600">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}" class="hover:text-blue-600">Login</a></li>
+                    <li><a href="{% url 'register' %}" class="hover:text-blue-600">Signup</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 📦 Page Content -->
+    <main class="max-w-7xl mx-auto px-6 py-10">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 🧭 Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-10 mt-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+            <div>
+                <h3 class="text-xl font-semibold mb-2 text-white">InternGo</h3>
+                <p>Connecting students with opportunities that shape their careers.</p>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Quick Links</h4>
+                <ul>
+                    <li><a href="{% url 'home' %}" class="hover:text-blue-400">Home</a></li>
+                    <li><a href="{% url 'about' %}" class="hover:text-blue-400">About</a></li>
+                    <li><a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-2">Follow Us</h4>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                    <a href="#" class="hover:text-blue-400">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <p class="text-center mt-8 text-sm text-gray-500">© 2025 InternGo. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

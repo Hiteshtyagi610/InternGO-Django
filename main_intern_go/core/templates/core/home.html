@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block title %}Home | InternGo{% endblock %}
+{% block content %}
+
+<section class="text-center py-20">
+    <h1 class="text-5xl font-bold text-gray-800 mb-4">Find Your Dream Internship</h1>
+    <p class="text-lg text-gray-600 mb-8">Explore thousands of opportunities and connect directly with startups.</p>
+    <a href="{% url 'internship_list' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">Explore Internships</a>
+</section>
+
+<section class="py-16 bg-gray-100">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
+        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Students</h3>
+            <p class="text-gray-600 mb-4">Apply to internships matching your interests and skills. Build your career early.</p>
+            <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Join Now →</a>
+        </div>
+
+        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Employers</h3>
+            <p class="text-gray-600 mb-4">Post internship listings and find talented students to join your company.</p>
+            <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Get Started →</a>
+        </div>
+
+        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
+            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Colleges</h3>
+            <p class="text-gray-600 mb-4">Collaborate with InternGo to help students gain real-world experience.</p>
+            <a href="{% url 'contact' %}" class="text-blue-600 hover:underline">Partner With Us →</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

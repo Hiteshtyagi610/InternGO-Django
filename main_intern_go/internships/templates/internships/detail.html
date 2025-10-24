@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block title %}{{ internship.title }} | InternGo{% endblock %}
+{% block content %}
+
+<section class="max-w-4xl mx-auto py-12">
+    <h2 class="text-3xl font-bold text-gray-800 mb-2">{{ internship.title }}</h2>
+    <p class="text-gray-600 mb-4">{{ internship.company_name }} • {{ internship.location }}</p>
+    <p class="text-gray-700 mb-8">{{ internship.description }}</p>
+    <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Apply Now</a>
+</section>
+
+{% endblock %}
