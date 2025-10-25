@@ -1,25 +1,94 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block title %}Contact | InternGo{% endblock %}
-{% block content %}
 
-<section class="max-w-3xl mx-auto py-16">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Contact Us</h2>
-    <form action="#" method="POST" class="bg-white p-8 rounded-2xl shadow-md">
-        {% csrf_token %}
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Full Name</label>
-            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+{% block content %}
+<section class="relative min-h-screen bg-gray-50 py-20 overflow-hidden">
+
+    <!-- Optional animated gradient background -->
+    <div class="absolute inset-0 -z-10">
+        <canvas id="contact-bg" class="w-full h-full"></canvas>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-6 animate-fadeInDown">Get in Touch</h2>
+        <p class="text-center text-gray-600 mb-12 animate-fadeIn delay-200">We’d love to hear from you! Reach out for queries, partnership, or internship support.</p>
+
+        <div class="grid md:grid-cols-2 gap-12">
+
+            <!-- Contact Info -->
+            <div class="space-y-8 animate-fadeIn delay-400">
+                <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 flex items-start space-x-4 shadow-lg hover:scale-105 transition transform">
+                    <svg class="w-6 h-6 text-blue-600 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-3-5 5-2-2L3 19h18V8z"/></svg>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Email</h4>
+                        <p class="text-gray-600">
+                            <a href="mailto:support@interngo.com" class="hover:text-blue-600 transition">support@interngo.com</a><br>
+                            <a href="mailto:info@interngo.com" class="hover:text-blue-600 transition">info@interngo.com</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 flex items-start space-x-4 shadow-lg hover:scale-105 transition transform">
+                    <svg class="w-6 h-6 text-blue-600 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M3 6v15h18V6H3zm16 13H5V8h14v11zm-7-2h4v-2h-4v2zm-4 0h2v-2H8v2z"/></svg>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Phone</h4>
+                        <p class="text-gray-600"><a href="tel:+911234567890" class="hover:text-blue-600 transition">+91 12345 67890</a></p>
+                    </div>
+                </div>
+
+                <div class="bg-white/50 backdrop-blur-md rounded-2xl p-6 flex items-start space-x-4 shadow-lg hover:scale-105 transition transform">
+                    <svg class="w-6 h-6 text-blue-600 mt-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
+                    <div>
+                        <h4 class="font-semibold text-gray-800">Address</h4>
+                        <p class="text-gray-600">Delhi, India</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-white/50 backdrop-blur-md shadow-lg rounded-3xl p-8 animate-fadeIn delay-600">
+                <h4 class="text-xl font-semibold text-gray-800 mb-6">Send Us a Message</h4>
+                <form action="#" method="POST" class="space-y-4">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                    <input type="email" name="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                    <input type="text" name="subject" placeholder="Subject" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+                    <textarea name="message" rows="5" placeholder="Your Message" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400" required></textarea>
+                    <button type="submit" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition w-full hover:scale-105 transform">Send Message</button>
+                </form>
+            </div>
+
         </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Email</label>
-            <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
-        </div>
-        <div class="mb-6">
-            <label class="block text-gray-700 font-medium mb-2">Message</label>
-            <textarea rows="5" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
-        </div>
-        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Send Message</button>
-    </form>
+    </div>
 </section>
 
+<!-- Animations -->
+<style>
+@keyframes fadeIn { 0%{opacity:0;transform:translateY(20px);}100%{opacity:1;transform:translateY(0);} }
+@keyframes fadeInDown { 0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);} }
+.animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
+.animate-fadeInDown { animation: fadeInDown 1s ease-out forwards; }
+.animate-fadeIn.delay-200 { animation-delay: 0.2s; }
+.animate-fadeIn.delay-400 { animation-delay: 0.4s; }
+.animate-fadeIn.delay-600 { animation-delay: 0.6s; }
+</style>
+
+<!-- Optional Particles Background -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script>
+tsParticles.load("contact-bg", {
+    fpsLimit: 60,
+    particles: {
+        number: { value: 50 },
+        color: { value: ["#3b82f6","#6366f1","#a78bfa"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.2 },
+        size: { value: { min: 2, max: 5 } },
+        move: { enable: true, speed: 1, direction: "none", outMode: "bounce" }
+    },
+    interactivity: { events: { onHover: { enable: true, mode: "repulse" } } },
+    detectRetina: true
+});
+</script>
 {% endblock %}

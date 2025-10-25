@@ -1,33 +1,153 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 {% block title %}Home | InternGo{% endblock %}
 {% block content %}
 
-<section class="text-center py-20">
-    <h1 class="text-5xl font-bold text-gray-800 mb-4">Find Your Dream Internship</h1>
-    <p class="text-lg text-gray-600 mb-8">Explore thousands of opportunities and connect directly with startups.</p>
-    <a href="{% url 'internship_list' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition">Explore Internships</a>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white overflow-hidden h-[90vh] flex items-center justify-center">
+    <div class="absolute inset-0 flex justify-center items-center pointer-events-none">
+        <div class="absolute w-32 h-32 bg-white/20 rounded-2xl blur-3xl animate-float"></div>
+        <div class="absolute w-48 h-48 bg-white/10 rounded-3xl blur-2xl animate-float animation-delay-500"></div>
+        <div class="absolute w-24 h-24 bg-white/30 rounded-2xl blur-xl animate-float animation-delay-1000"></div>
+    </div>
+
+    <div class="max-w-5xl px-6 text-center relative z-10">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-200 to-white animate-fadeIn">Find Your Dream Internship</h1>
+        <p class="text-lg md:text-xl mb-10 text-white animate-fadeIn delay-200">Thousands of opportunities. Connect directly with startups. Launch your career with confidence.</p>
+        <a href="{% url 'internship_list' %}" class="inline-block bg-gradient-to-r from-white to-white/80 text-blue-600 font-semibold px-10 py-4 rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 animate-fadeIn delay-400">Explore Internships</a>
+    </div>
 </section>
 
-<section class="py-16 bg-gray-100">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 px-6">
-        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Students</h3>
-            <p class="text-gray-600 mb-4">Apply to internships matching your interests and skills. Build your career early.</p>
-            <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Join Now →</a>
+<!-- Features Section -->
+<section class="py-28 bg-gray-50 relative z-10">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+        <!-- Student Card -->
+        <div class="group relative bg-white/50 backdrop-blur-md shadow-2xl rounded-3xl p-8 text-center hover:scale-105 hover:rotate-1 transition-all duration-500 cursor-pointer animate-fadeIn delay-200">
+            <div class="flex justify-center mb-4 transform group-hover:scale-110 transition-all duration-500">
+                <img src="{% static 'icons/student.svg' %}" alt="Students" class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-500 p-4 rounded-full shadow-lg">
+            </div>
+            <h3 class="text-2xl font-bold text-gradient mb-3">For Students</h3>
+            <p class="text-gray-700 mb-5">Apply to internships matching your interests and skills. Start building your career early with the right opportunities.</p>
+            <a href="{% url 'register' %}" class="text-blue-600 font-semibold hover:underline">Join Now →</a>
         </div>
 
-        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Employers</h3>
-            <p class="text-gray-600 mb-4">Post internship listings and find talented students to join your company.</p>
-            <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Get Started →</a>
+        <!-- Employer Card -->
+        <div class="group relative bg-white/50 backdrop-blur-md shadow-2xl rounded-3xl p-8 text-center hover:scale-105 hover:-rotate-1 transition-all duration-500 cursor-pointer animate-fadeIn delay-400">
+            <div class="flex justify-center mb-4 transform group-hover:scale-110 transition-all duration-500">
+                <img src="{% static 'icons/employer.svg' %}" alt="Employers" class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 p-4 rounded-full shadow-lg">
+            </div>
+            <h3 class="text-2xl font-bold text-gradient mb-3">For Employers</h3>
+            <p class="text-gray-700 mb-5">Post internship listings and find talented students to join your company effortlessly.</p>
+            <a href="{% url 'register' %}" class="text-blue-600 font-semibold hover:underline">Get Started →</a>
         </div>
 
-        <div class="bg-white shadow-md rounded-2xl p-6 hover:shadow-lg transition">
-            <h3 class="text-2xl font-semibold mb-2 text-blue-600">For Colleges</h3>
-            <p class="text-gray-600 mb-4">Collaborate with InternGo to help students gain real-world experience.</p>
-            <a href="{% url 'contact' %}" class="text-blue-600 hover:underline">Partner With Us →</a>
+        <!-- College Card -->
+        <div class="group relative bg-white/50 backdrop-blur-md shadow-2xl rounded-3xl p-8 text-center hover:scale-105 hover:rotate-2 transition-all duration-500 cursor-pointer animate-fadeIn delay-600">
+            <div class="flex justify-center mb-4 transform group-hover:scale-110 transition-all duration-500">
+                <img src="{% static 'icons/college.svg' %}" alt="Colleges" class="w-20 h-20 bg-gradient-to-br from-green-400 to-teal-500 p-4 rounded-full shadow-lg">
+            </div>
+            <h3 class="text-2xl font-bold text-gradient mb-3">For Colleges</h3>
+            <p class="text-gray-700 mb-5">Collaborate with InternGo to help students gain practical, real-world experience that boosts employability.</p>
+            <a href="{% url 'contact' %}" class="text-blue-600 font-semibold hover:underline">Partner With Us →</a>
         </div>
     </div>
 </section>
 
+<!-- How It Works -->
+<section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-12">How It Works</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="p-6 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-3xl shadow-lg hover:scale-105 transition transform animate-fadeIn delay-200">
+                <img src="{% static 'icons/signup.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Step 1">
+                <h3 class="text-xl font-semibold mb-2">Sign Up</h3>
+                <p class="text-gray-700">Create your account and complete your profile to get personalized internship suggestions.</p>
+            </div>
+            <div class="p-6 bg-gradient-to-r from-purple-100 to-pink-100 rounded-3xl shadow-lg hover:scale-105 transition transform animate-fadeIn delay-400">
+                <img src="{% static 'icons/search.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Step 2">
+                <h3 class="text-xl font-semibold mb-2">Find Opportunities</h3>
+                <p class="text-gray-700">Browse thousands of internships based on your skills, interests, and location preferences.</p>
+            </div>
+            <div class="p-6 bg-gradient-to-r from-green-100 to-teal-100 rounded-3xl shadow-lg hover:scale-105 transition transform animate-fadeIn delay-600">
+                <img src="{% static 'icons/apply.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Step 3">
+                <h3 class="text-xl font-semibold mb-2">Apply & Grow</h3>
+                <p class="text-gray-700">Apply directly and track your applications. Gain real-world experience and kickstart your career.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-24 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-12">Our Impact</h2>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="p-6 bg-white rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <h3 class="text-3xl font-extrabold text-blue-600 count" data-count="2000">0</h3>
+                <p class="text-gray-700 mt-2">Interns Placed</p>
+            </div>
+            <div class="p-6 bg-white rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <h3 class="text-3xl font-extrabold text-purple-600 count" data-count="500">0</h3>
+                <p class="text-gray-700 mt-2">Startups Collaborated</p>
+            </div>
+            <div class="p-6 bg-white rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <h3 class="text-3xl font-extrabold text-green-600 count" data-count="12000">0</h3>
+                <p class="text-gray-700 mt-2">Applications Submitted</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+        <h2 class="text-4xl font-bold mb-12">What Our Students Say</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="p-6 bg-gray-50 rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <p class="text-gray-700 mb-4">"InternGo helped me land my first internship in a top startup. The process was smooth and simple!"</p>
+                <h5 class="font-semibold text-gray-800">- Priya Sharma</h5>
+            </div>
+            <div class="p-6 bg-gray-50 rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <p class="text-gray-700 mb-4">"A great platform for startups to find talented students. Easy posting and tracking applications."</p>
+                <h5 class="font-semibold text-gray-800">- Rohan Verma</h5>
+            </div>
+            <div class="p-6 bg-gray-50 rounded-3xl shadow-lg hover:scale-105 transition transform">
+                <p class="text-gray-700 mb-4">"Our college partnered with InternGo and our students got real-world experience that mattered."</p>
+                <h5 class="font-semibold text-gray-800">- Dr. Meena Rao</h5>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-24 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-center">
+    <h2 class="text-4xl font-bold mb-6">Ready to Start Your Internship Journey?</h2>
+    <p class="text-lg mb-8">Join thousands of students and startups already using InternGo.</p>
+    <a href="{% url 'register' %}" class="inline-block bg-white text-blue-600 font-semibold px-10 py-4 rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500">Get Started Now</a>
+</section>
+
 {% endblock %}
+
+<!-- Add JS for animated counters -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count");
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-count");
+            const count = +counter.innerText;
+            const speed = 200;
+            const increment = target / speed;
+            if(count < target){
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 15);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+});
+</script>
+

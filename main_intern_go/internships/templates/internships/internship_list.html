@@ -1,25 +1,77 @@
 {% extends 'layout.html' %}
-{% block title %}Contact | InternGo{% endblock %}
-{% block content %}
+{% block title %}Explore Internships | InternGo{% endblock %}
 
-<section class="max-w-3xl mx-auto py-16">
-    <h2 class="text-4xl font-bold text-center text-gray-800 mb-8">Contact Us</h2>
-    <form action="#" method="POST" class="bg-white p-8 rounded-2xl shadow-md">
-        {% csrf_token %}
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Full Name</label>
-            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+{% block content %}
+<section class="max-w-7xl mx-auto px-4 py-16">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-4 animate-fadeInUp">Discover Your Dream Internship 🚀</h1>
+        <p class="text-gray-600 text-lg md:text-xl animate-fadeInUp delay-200">Find opportunities that match your skills and passion. Start your career journey today!</p>
+    </div>
+
+    <!-- Search + Filters -->
+    <div class="bg-white shadow-2xl rounded-3xl p-6 mb-12 flex flex-col md:flex-row gap-4 items-center justify-between animate-fadeInUp delay-400">
+        <form method="GET" action="" class="w-full md:w-3/4 flex gap-3">
+            <input type="text" name="q" placeholder="Search internships, roles, or companies..."
+                   class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+            <select name="location" class="border border-gray-300 rounded-2xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                <option value="">All Locations</option>
+                <option>Remote</option>
+                <option>Delhi</option>
+                <option>Bangalore</option>
+                <option>Singapore</option>
+            </select>
+            <button type="submit" class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-2xl font-semibold hover:opacity-90 transition transform hover:-translate-y-1">Search</button>
+        </form>
+    </div>
+
+    <!-- Internship Cards Grid -->
+    <div class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10">
+        {% for internship in internships %}
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden transform transition hover:scale-105 hover:shadow-2xl animate-fadeInUp">
+            <div class="relative">
+                <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold animate-bounce">New</div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">{{ internship.title }}</h3>
+                    <p class="text-gray-500 text-sm mb-3">{{ internship.company_name }}</p>
+                    <p class="text-gray-700 mb-4 line-clamp-4">{{ internship.description|truncatechars:150 }}</p>
+
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">{{ internship.location }}</span>
+                        <a href="{% url 'internship_detail' internship.id %}" 
+                           class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-full font-medium shadow hover:shadow-lg transition transform hover:-translate-y-1">View Details</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mb-4">
-            <label class="block text-gray-700 font-medium mb-2">Email</label>
-            <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
-        </div>
-        <div class="mb-6">
-            <label class="block text-gray-700 font-medium mb-2">Message</label>
-            <textarea rows="5" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
-        </div>
-        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Send Message</button>
-    </form>
+        {% empty %}
+        <p class="text-gray-500 text-center col-span-full">No internships available right now. Please check back later!</p>
+        {% endfor %}
+    </div>
+
+    <!-- Load More Button -->
+    <div class="text-center mt-12">
+        <button class="bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-8 py-3 rounded-2xl font-semibold shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 hover:scale-105">
+            Load More
+        </button>
+    </div>
 </section>
 
+<!-- Tailwind Animations -->
+<style>
+@keyframes fadeInUp { 
+    0% { opacity: 0; transform: translateY(30px); } 
+    100% { opacity: 1; transform: translateY(0); } 
+}
+.animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+.animate-fadeInUp.delay-200 { animation-delay: 0.2s; }
+.animate-fadeInUp.delay-400 { animation-delay: 0.4s; }
+
+@keyframes bounce { 
+    0%, 100% { transform: translateY(0); } 
+    50% { transform: translateY(-5px); } 
+}
+.animate-bounce { animation: bounce 1.5s infinite; }
+</style>
 {% endblock %}

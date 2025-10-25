@@ -1,24 +1,106 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block title %}Login | InternGo{% endblock %}
-{% block content %}
 
-<section class="max-w-md mx-auto py-16">
-    <h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2>
-    <form method="POST" class="bg-white p-8 rounded-2xl shadow-md">
-        {% csrf_token %}
-        <div class="mb-4">
-            <label class="block text-gray-700 mb-2">Email</label>
-            <input type="email" name="email" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400">
+{% block content %}
+<section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- Animated Gradient Background -->
+    <div class="absolute inset-0">
+        <canvas id="gradient-bg" class="w-full h-full"></canvas>
+    </div>
+
+    <!-- Glass Card -->
+    <div id="login-card" class="relative max-w-md w-full bg-white/50 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl p-10 transform transition duration-700 hover:scale-105 animate-fadeIn">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-2 animate-bounce">Welcome Back</h2>
+        <p class="text-center text-gray-600 mb-8">Login to access your internships and dashboard</p>
+
+        <form id="login-form" class="space-y-6">
+            {% csrf_token %}
+
+            <!-- Email Input -->
+            <div class="relative group">
+                <input type="email" name="email" placeholder=" " class="peer w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"/>
+                <label class="absolute left-4 top-3 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-[-0.5rem] peer-focus:text-blue-600 peer-focus:text-sm transition-all">Email</label>
+            </div>
+
+            <!-- Password Input -->
+            <div class="relative group">
+                <input type="password" name="password" id="password-input" placeholder=" " class="peer w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"/>
+                <label class="absolute left-4 top-3 text-gray-400 text-sm peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-[-0.5rem] peer-focus:text-blue-600 peer-focus:text-sm transition-all">Password</label>
+                <span class="absolute right-3 top-3 cursor-pointer text-gray-400" id="toggle-password">👁️</span>
+                <div class="h-1 mt-2 rounded bg-gray-200">
+                    <div class="h-1 rounded w-0 transition-all" id="password-strength"></div>
+                </div>
+            </div>
+
+            <!-- Login Button -->
+            <button type="submit" class="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:scale-105 hover:shadow-xl transition-transform duration-300 relative overflow-hidden">
+                Login
+                <span class="absolute left-0 top-0 w-0 h-full bg-white/20 transition-all duration-500 group-hover:w-full"></span>
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-gray-600">
+            Don't have an account? 
+            <a href="{% url 'register' %}" class="text-blue-600 font-semibold hover:underline">Sign Up</a>
         </div>
-        <div class="mb-6">
-            <label class="block text-gray-700 mb-2">Password</label>
-            <input type="password" name="password" class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-400">
+
+        <!-- Social Login -->
+        <div class="mt-8 flex justify-center gap-4">
+            <a href="#" class="flex items-center px-4 py-2 rounded-lg border border-gray-300 hover:scale-110 transition duration-300 shadow-sm">
+                <img src="{% static 'images/google_icon.svg' %}" class="w-5 h-5 mr-2"> Google
+            </a>
+            <a href="#" class="flex items-center px-4 py-2 rounded-lg border border-gray-300 hover:scale-110 transition duration-300 shadow-sm">
+                <img src="{% static 'images/linkedin_icon.svg' %}" class="w-5 h-5 mr-2"> LinkedIn
+            </a>
         </div>
-        <button class="bg-blue-600 text-white w-full py-2 rounded-lg hover:bg-blue-700 transition">Login</button>
-        <p class="mt-4 text-center text-gray-600">Don't have an account? 
-            <a href="{% url 'register' %}" class="text-blue-600 hover:underline">Sign Up</a>
-        </p>
-    </form>
+    </div>
 </section>
 
+<!-- Tailwind Animations -->
+<style>
+@keyframes fadeIn { 0%{opacity:0;transform:translateY(30px)}100%{opacity:1;transform:translateY(0)} }
+.animate-fadeIn { animation: fadeIn 1s ease-out forwards; }
+
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-10px)} 40%,80%{transform:translateX(10px)} }
+.shake { animation: shake 0.5s; }
+</style>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+const passwordInput = document.getElementById('password-input');
+const togglePassword = document.getElementById('toggle-password');
+const strengthBar = document.getElementById('password-strength');
+const form = document.getElementById('login-form');
+const card = document.getElementById('login-card');
+
+togglePassword.addEventListener('click', ()=>{ passwordInput.type = passwordInput.type==='password'?'text':'password'; });
+passwordInput.addEventListener('input', ()=>{
+    const val=passwordInput.value;
+    let width=0,color='bg-red-500';
+    if(val.length>=8){ width=100;color='bg-green-500'; }
+    else if(val.length>=6){ width=70;color='bg-yellow-400'; }
+    else if(val.length>=4){ width=40;color='bg-orange-400'; }
+    strengthBar.style.width=width+'%';
+    strengthBar.className=`h-1 rounded mt-2 transition-all ${color}`;
+});
+
+// Fake login validation
+form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const pass=form.password.value;
+    if(pass==='intern'){ confetti({particleCount:150,spread:80,origin:{y:0.6}}); alert('Login Successful!'); }
+    else{ card.classList.add('shake'); setTimeout(()=>{ card.classList.remove('shake'); },500);}
+});
+
+// Particles
+tsParticles.load("gradient-bg",{
+    fpsLimit:60,
+    particles:{number:{value:60},color:{value:["#3b82f6","#6366f1","#a78bfa"]},shape:{type:"circle"},opacity:{value:0.3},size:{value:{min:2,max:5}},move:{enable:true,speed:1,direction:"none",outMode:"bounce"}},
+    interactivity:{events:{onHover:{enable:true,mode:"repulse"}}},detectRetina:true
+});
+</script>
 {% endblock %}

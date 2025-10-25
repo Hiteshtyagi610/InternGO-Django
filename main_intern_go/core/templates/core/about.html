@@ -1,15 +1,127 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% block title %}About | InternGo{% endblock %}
 {% block content %}
 
-<section class="max-w-5xl mx-auto py-16 text-center">
-    <h2 class="text-4xl font-bold text-gray-800 mb-6">About InternGo</h2>
-    <p class="text-lg text-gray-600 mb-8">
-        InternGo is a platform that bridges the gap between students and startups. 
-        We aim to empower students with hands-on learning experiences and help startups 
-        find passionate interns ready to contribute from day one.
-    </p>
-    <img src="{% static 'images/about_team.svg' %}" alt="Team" class="mx-auto w-2/3 rounded-lg shadow-md">
+<!-- Hero About Section -->
+<section class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-28 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 text-center animate-fadeInUp">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6">About InternGo</h1>
+        <p class="text-lg md:text-xl mb-8">Empowering students with real-world internships and helping startups discover top talent. Launch your career with confidence.</p>
+        <a href="{% url 'internship_list' %}" class="inline-block bg-white text-blue-600 font-semibold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-1 hover:scale-105">Explore Internships</a>
+    </div>
+    <div class="absolute bottom-0 left-0 w-full h-32 bg-white rounded-t-full opacity-20"></div>
 </section>
+
+<!-- Stats Section -->
+<section class="bg-gray-50 py-24">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition transform hover:scale-105 animate-fadeInUp">
+            <h3 class="text-4xl font-bold text-blue-600 count" data-count="5000">0</h3>
+            <p class="mt-2 text-gray-700 font-semibold">Students Placed</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition transform hover:scale-105 animate-fadeInUp delay-200">
+            <h3 class="text-4xl font-bold text-blue-600 count" data-count="1000">0</h3>
+            <p class="mt-2 text-gray-700 font-semibold">Startups Joined</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition transform hover:scale-105 animate-fadeInUp delay-400">
+            <h3 class="text-4xl font-bold text-blue-600 count" data-count="20000">0</h3>
+            <p class="mt-2 text-gray-700 font-semibold">Internships Posted</p>
+        </div>
+    </div>
+</section>
+
+<!-- Mission & Vision Section -->
+<section class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-8">
+    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-10 rounded-3xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInLeft">
+        <h3 class="text-2xl font-bold text-blue-600 mb-4">Our Mission</h3>
+        <p class="text-gray-700">To empower students with practical experience, enhance career prospects, and connect startups with enthusiastic interns.</p>
+    </div>
+    <div class="bg-gradient-to-r from-purple-50 to-pink-50 p-10 rounded-3xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInRight">
+        <h3 class="text-2xl font-bold text-blue-600 mb-4">Our Vision</h3>
+        <p class="text-gray-700">To become the leading platform for internship opportunities in India, fostering growth for both students and startups alike.</p>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="bg-gray-100 py-24">
+    <div class="max-w-7xl mx-auto px-6 text-center mb-12 animate-fadeInUp">
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose InternGo?</h2>
+        <p class="text-gray-600">We make internship experience seamless, rewarding, and impactful for students and startups.</p>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp">
+            <img src="{% static 'icons/fast.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Fast">
+            <h4 class="text-xl font-semibold mb-2">Fast Application</h4>
+            <p class="text-gray-700">Quickly apply to thousands of internships with one click and get instant updates.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp delay-200">
+            <img src="{% static 'icons/trusted.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Trusted">
+            <h4 class="text-xl font-semibold mb-2">Trusted Startups</h4>
+            <p class="text-gray-700">Work with verified startups and gain real-world experience with credible companies.</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp delay-400">
+            <img src="{% static 'icons/growth.svg' %}" class="w-16 h-16 mx-auto mb-4" alt="Growth">
+            <h4 class="text-xl font-semibold mb-2">Career Growth</h4>
+            <p class="text-gray-700">Enhance skills, build your portfolio, and grow professionally while interning.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="max-w-7xl mx-auto px-6 py-24">
+    <h2 class="text-4xl font-bold text-center text-gray-800 mb-12 animate-fadeInUp">Meet Our Team</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp">
+            <img src="{% static 'images/profile_default.png' %}" class="w-32 h-32 rounded-full mx-auto mb-4 hover:scale-110 transition" alt="Team Member">
+            <h4 class="text-xl font-semibold">Hitesh Tyagi</h4>
+            <p class="text-gray-600">Founder & CEO</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp delay-200">
+            <img src="{% static 'images/profile_default.png' %}" class="w-32 h-32 rounded-full mx-auto mb-4 hover:scale-110 transition" alt="Team Member">
+            <h4 class="text-xl font-semibold">Rohan Goyal</h4>
+            <p class="text-gray-600">CTO</p>
+        </div>
+        <div class="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition transform hover:-translate-y-2 animate-fadeInUp delay-400">
+            <img src="{% static 'images/profile_default.png' %}" class="w-32 h-32 rounded-full mx-auto mb-4 hover:scale-110 transition" alt="Team Member">
+            <h4 class="text-xl font-semibold">Ananya Singh</h4>
+            <p class="text-gray-600">Head of Operations</p>
+        </div>
+    </div>
+</section>
+
+<!-- JS for Animated Counters -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".count");
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute("data-count");
+            const count = +counter.innerText;
+            const increment = target / 200;
+            if(count < target){
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 15);
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+});
+</script>
+
+<!-- Tailwind Animations -->
+<style>
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(40px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInLeft { 0% { opacity: 0; transform: translateX(-40px); } 100% { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInRight { 0% { opacity: 0; transform: translateX(40px); } 100% { opacity: 1; transform: translateX(0); } }
+
+.animate-fadeInUp { animation: fadeInUp 1s ease forwards; }
+.animate-fadeInLeft { animation: fadeInLeft 1s ease forwards; }
+.animate-fadeInRight { animation: fadeInRight 1s ease forwards; }
+.animate-fadeInUp.delay-200 { animation-delay: 0.2s; }
+.animate-fadeInUp.delay-400 { animation-delay: 0.4s; }
+</style>
 
 {% endblock %}
