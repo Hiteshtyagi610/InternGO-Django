@@ -9,56 +9,73 @@
 
 ## 🌟 Project Overview
 
-**InternGo** is a **Django-powered internship portal** designed to connect students with startups and companies.  
-It allows students to **create profiles, upload resumes, apply for internships**, and enables employers to **post internships and manage applications** efficiently.  
+**InternGo** is a **full-stack internship portal built with Django**, connecting students with startups and companies.  
 
-This project demonstrates **full-stack web development skills**, **Python Django expertise**, and **responsive design with Tailwind CSS**.
+It provides:
+
+- **Student Portal:** Apply for internships, upload resumes, track applications  
+- **Employer Portal:** Post internships, review applicants, manage opportunities  
+- **Admin Dashboard:** Manage users, internships, and monitor activity  
+
+The platform demonstrates **Django expertise, full-stack development, responsive design with Tailwind CSS**, and **modern web UI/UX principles**.
 
 ---
 
 ## 🎯 Why InternGo?
 
-Many students struggle to find relevant internships, while startups often face challenges managing applications. **InternGo** solves this problem by:
+Finding relevant internships is challenging for students, while startups struggle to manage applicants efficiently. **InternGo** addresses these problems by:
 
-- Simplifying student internship applications  
-- Automating resume parsing for faster employer review  
-- Providing a user-friendly dashboard for students, employers, and admins  
+- Simplifying **student internship applications**  
+- Automating **resume parsing** for faster employer review  
+- Providing **intuitive dashboards** for students, employers, and admins  
+- Enhancing **career opportunities** with a reliable internship ecosystem  
 
 ---
 
 ## 🛠 Features
 
-### Student Portal
-- Register/login securely  
-- Upload resumes (PDF parsing)  
+### ✅ Student Portal
+- Secure **registration/login**  
+- Upload and parse **resumes (PDF)**  
 - Browse and apply for internships  
-- Track application status  
+- Track **application status**  
 
-### Employer Portal
-- Post and manage internship opportunities  
-- Review student applications  
-- Receive automated notifications  
+### ✅ Employer Portal
+- Post and manage internship listings  
+- Review **student applications**  
+- Receive automated **notifications**  
 
-### Admin Dashboard
+### ✅ Admin Dashboard
 - Manage users, internships, and applications  
-- Oversee system operations  
+- Oversee system operations and statistics  
 
-### Resume Parsing
-- Extract skills, experience, and contact info automatically  
-- Store parsed data for quick filtering  
+### ✅ Resume Parsing
+- Extract **skills, experience, and contact information** automatically  
+- Filter applicants efficiently  
 
-### Responsive UI
-- Mobile-friendly design using **Tailwind CSS**  
-- Modern and clean interface  
+### ✅ UI/UX
+- Fully **responsive and mobile-friendly**  
+- Modern **Tailwind CSS** design  
+- Smooth animations and interactive UI elements  
 
 ---
 
-## 🧰 Tech Stack
+## 🖥 Tech Stack
 
 - **Backend:** Python, Django  
 - **Frontend:** HTML, Tailwind CSS, Jinja2 templates  
-- **Database:** SQLite (dev) / PostgreSQL (prod)  
+- **Database:** SQLite (development) / PostgreSQL (production)  
 - **Tools:** Git, GitHub, VSCode  
+
+---
+
+## 📸 Screenshots
+
+| Home | Explore Internships | Profile |
+|------|-------------------|---------|
+| ![home](screenshots/home.png) | ![explore](screenshots/explore.png) | ![profile](screenshots/profile.png) |
+
+> Replace these with your actual screenshots in a `screenshots/` folder  
 
 ---
 
@@ -66,5 +83,5 @@ Many students struggle to find relevant internships, while startups often face c
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Hiteshtyagi610/InternGO-Django
+git clone https://github.com/Hiteshtyagi610/InternGO-Django.git
 cd InternGo
